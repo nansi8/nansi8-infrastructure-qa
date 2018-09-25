@@ -16,14 +16,14 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: redis-data-storage
-        image: corybuecker/redis:3.2
+        image: redis
         imagePullPolicy: Always
         ports:
         - containerPort: 6379
           name: redis
         volumeMounts:
-        - name: data-storage-volume
-          mountPath: /data
+        - mountPath: /data
+          name: data-storage-volume
   volumeClaimTemplates:
   - metadata:
       name: data-storage-volume
