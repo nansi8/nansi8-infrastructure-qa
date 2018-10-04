@@ -19,3 +19,10 @@ spec:
         image: gcr.io/nansi8-217516/data-service
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
