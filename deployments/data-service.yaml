@@ -19,5 +19,3 @@ spec:
         image: gcr.io/nansi8-217516/data-service
         ports:
         - containerPort: 80
-      imagePullSecrets:
-      - name: gcr-json-key
