@@ -1,10 +1,11 @@
 apiVersion: v1
+data:
+  checksum-nodes: "5"
+  data-nodes: "2"
 kind: ConfigMap
 metadata:
   name: data-service-config
-data:
-  data-nodes: 2
-  checksum-nodes: 2
+  namespace: default
 
 ---
 apiVersion: apps/v1
@@ -37,6 +38,12 @@ spec:
             configMapKeyRef:
               name: data-service-config
               key: checksum-nodes
+        readinessProbe:
+          httpGet:
+            port: 80
+            path: /data-service/health
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
         ports:
         - containerPort: 80
         resources:
@@ -71,6 +78,10 @@ metadata:
   labels:
     app: data-service
 spec:
-  backend:
-    serviceName: data-service
-    servicePort: 80
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: data-service
+          servicePort: 80
+        path: /data-service
