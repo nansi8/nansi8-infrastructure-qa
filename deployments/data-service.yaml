@@ -84,4 +84,4 @@ spec:
       - backend:
           serviceName: data-service
           servicePort: 80
-        path: /data-service
+        path: /data-service/*
