@@ -66,3 +66,23 @@ spec:
   selector:
     app: data-service
   type: NodePort
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nansi
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app: data-service
+spec:
+  rules:
+  - host: nansi8.net
+    http:
+      paths:
+      - backend:
+          serviceName: data-service
+          servicePort: 80
+        path: /data-service
+
