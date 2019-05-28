@@ -25,7 +25,8 @@ spec:
     spec:
       containers:
       - name: data-service
-        image: gcr.io/nansi8-217516/data-service
+        image: data-service
+        imagePullPolicy: Never
         env:
         - name: DATA_NODES
           valueFrom:
